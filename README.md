@@ -127,13 +127,13 @@ O projeto utiliza **PostgreSQL rodando localmente**.
 Antes de iniciar a aplicação, é necessário criar um banco de dados chamado:
 
 ```
-orderdb
+order_api
 ```
 
 Exemplo utilizando psql:
 
 ```
-CREATE DATABASE orderdb;
+CREATE DATABASE order_api;
 ```
 
 ---
