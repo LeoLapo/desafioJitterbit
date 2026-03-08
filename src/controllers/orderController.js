@@ -27,6 +27,29 @@ async function createOrder(req, res) {
   }
 }
 
+async function getOrder(req, res) {
+  try {
+    const { id } = req.params
+
+    const order = await orderService.getOrderById(id)
+
+    if (!order) {
+      return res.status(404).json({
+        error: "Pedido não encontrado"
+      })
+    }
+
+    return res.status(200).json(order)
+
+  } catch (error) {
+    return res.status(500).json({
+      error: "Erro ao buscar pedido",
+      details: error.message
+    })
+  }
+}
+
 module.exports = {
-  createOrder
+    createOrder,
+    getOrder
 }

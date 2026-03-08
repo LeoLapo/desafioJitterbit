@@ -18,6 +18,20 @@ async function createOrder(data) {
   return order
 }
 
+async function getOrderById(orderId) {
+  const order = await prisma.order.findUnique({
+    where: {
+      orderId: orderId
+    },
+    include: {
+      items: true
+    }
+  })
+
+  return order
+}
+
 module.exports = {
-  createOrder
+    createOrder,
+    getOrderById
 }
