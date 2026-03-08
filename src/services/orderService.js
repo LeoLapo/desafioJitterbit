@@ -41,8 +41,23 @@ async function listOrders() {
   return orders
 }
 
+async function updateOrder(orderId, data) {
+  const order = await prisma.order.update({
+    where: {
+      orderId: orderId
+    },
+    data: {
+      value: data.value,
+      creationDate: data.creationDate
+    }
+  })
+
+  return order
+}
+
 module.exports = {
     createOrder,
     getOrderById,
-    listOrders
+    listOrders,
+    updateOrder
 }

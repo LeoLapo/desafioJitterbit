@@ -9,6 +9,6 @@ router.get("/list", orderController.listOrders)
 
 router.get("/:id", orderController.getOrder)
 
-
+router.put("/:id", orderController.updateOrder)
 
 module.exports = router

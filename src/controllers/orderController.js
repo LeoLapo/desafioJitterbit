@@ -63,8 +63,29 @@ async function listOrders(req, res) {
   }
 }
 
+async function updateOrder(req, res) {
+  try {
+    const { id } = req.params
+    const { valorTotal, dataCriacao } = req.body
+
+    const updatedOrder = await orderService.updateOrder(id, {
+      value: valorTotal,
+      creationDate: new Date(dataCriacao)
+    })
+
+    return res.status(200).json(updatedOrder)
+
+  } catch (error) {
+    return res.status(500).json({
+      error: "Erro ao atualizar pedido",
+      details: error.message
+    })
+  }
+}
+
 module.exports = {
     createOrder,
     getOrder,
-    listOrders
+    listOrders,
+    updateOrder
 }
