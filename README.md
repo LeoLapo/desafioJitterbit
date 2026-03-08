@@ -312,4 +312,4 @@ Após isso, a aplicação poderá ser executada normalmente.
 
 **Leonardo Fernandes**
 
-Projeto desenvolvido como teste técnico para vaga de desenvolvedor backend.
+Projeto desenvolvido como teste técnico para vaga de Jr System Analyst.
