@@ -1,9 +1,12 @@
+// controller para gerenciar as operações de pedidos
 const orderService = require("../services/orderService")
 
+// função para criar um pedido
 async function createOrder(req, res) {
   try {
     const { numeroPedido, valorTotal, dataCriacao, items } = req.body
 
+// mapeando os dados recebidos para o formato esperado pelo serviço
     const mappedOrder = {
       orderId: numeroPedido,
       value: valorTotal,
@@ -14,11 +17,11 @@ async function createOrder(req, res) {
         price: item.valorItem
       }))
     }
-
+// chamando o serviço para criar o pedido
     const order = await orderService.createOrder(mappedOrder)
 
     return res.status(201).json(order)
-
+// tratamento de erros
   } catch (error) {
     return res.status(500).json({
       error: "Erro ao criar pedido",
@@ -27,6 +30,7 @@ async function createOrder(req, res) {
   }
 }
 
+// função para buscar um pedido por ID
 async function getOrder(req, res) {
   try {
     const { id } = req.params
@@ -49,6 +53,7 @@ async function getOrder(req, res) {
   }
 }
 
+// função para listar todos os pedidos
 async function listOrders(req, res) {
   try {
     const orders = await orderService.listOrders()
@@ -63,6 +68,7 @@ async function listOrders(req, res) {
   }
 }
 
+// função de atualização de pedido
 async function updateOrder(req, res) {
   try {
     const { id } = req.params
@@ -83,6 +89,7 @@ async function updateOrder(req, res) {
   }
 }
 
+// função para deletar um pedido
 async function deleteOrder(req, res) {
   try {
     const { id } = req.params
@@ -99,6 +106,7 @@ async function deleteOrder(req, res) {
   }
 }
 
+// exportando as funções do controller
 module.exports = {
     createOrder,
     getOrder,
