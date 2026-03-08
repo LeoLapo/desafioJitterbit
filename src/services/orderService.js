@@ -31,7 +31,18 @@ async function getOrderById(orderId) {
   return order
 }
 
+async function listOrders() {
+  const orders = await prisma.order.findMany({
+    include: {
+      items: true
+    }
+  })
+
+  return orders
+}
+
 module.exports = {
     createOrder,
-    getOrderById
+    getOrderById,
+    listOrders
 }

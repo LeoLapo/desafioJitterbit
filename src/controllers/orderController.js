@@ -49,7 +49,22 @@ async function getOrder(req, res) {
   }
 }
 
+async function listOrders(req, res) {
+  try {
+    const orders = await orderService.listOrders()
+
+    return res.status(200).json(orders)
+
+  } catch (error) {
+    return res.status(500).json({
+      error: "Erro ao listar pedidos",
+      details: error.message
+    })
+  }
+}
+
 module.exports = {
     createOrder,
-    getOrder
+    getOrder,
+    listOrders
 }
