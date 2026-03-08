@@ -1,3 +1,6 @@
+// importando a rota de autenticação
+const authRoutes = require("./routes/authRoutes")
+
 // arquivo principal do servidor
 const express = require("express")
 const orderRoutes = require("./routes/orderRoutes")
@@ -9,7 +12,10 @@ const swaggerSpec = require("./docs/swagger")
 // criando a aplicação express
 const app = express()
 
+
 app.use(express.json())
+
+app.use("/auth", authRoutes)
 
 app.use("/order", orderRoutes)
 

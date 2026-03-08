@@ -17,7 +17,7 @@
 
 /**
  * @swagger
- * /order:
+ * /order/list:
  *   get:
  *     summary: Listar todos os pedidos
  *     tags: [Orders]
@@ -99,6 +99,8 @@
  *         description: Pedido não encontrado
  */
 
+const authenticateToken = require("../middlewares/authMiddleware")
+
 // arquivo de rotas para pedidos
 const express = require("express")
 const router = express.Router()
@@ -107,14 +109,14 @@ const router = express.Router()
 const orderController = require("../controllers/orderController")
 
 // rota para criar um pedido
-router.post("/", orderController.createOrder)
+router.post("/", authenticateToken, orderController.createOrder)
 // rota para listar todos os pedidos
-router.get("/list", orderController.listOrders)
+router.get("/list", authenticateToken, orderController.listOrders)
 // rota para buscar um pedido por ID
-router.get("/:id", orderController.getOrder)
+router.get("/:id", authenticateToken, orderController.getOrder)
 // rota para atualizar um pedido
-router.put("/:id", orderController.updateOrder)
+router.put("/:id", authenticateToken, orderController.updateOrder)
 // rota para deletar um pedido
-router.delete("/:id", orderController.deleteOrder)
+router.delete("/:id", authenticateToken, orderController.deleteOrder)
 
 module.exports = router
