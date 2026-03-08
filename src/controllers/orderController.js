@@ -83,9 +83,26 @@ async function updateOrder(req, res) {
   }
 }
 
+async function deleteOrder(req, res) {
+  try {
+    const { id } = req.params
+
+    await orderService.deleteOrder(id)
+
+    return res.status(204).send()
+
+  } catch (error) {
+    return res.status(500).json({
+      error: "Erro ao deletar pedido",
+      details: error.message
+    })
+  }
+}
+
 module.exports = {
     createOrder,
     getOrder,
     listOrders,
-    updateOrder
+    updateOrder,
+    deleteOrder
 }

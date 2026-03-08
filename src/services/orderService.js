@@ -55,9 +55,26 @@ async function updateOrder(orderId, data) {
   return order
 }
 
+async function deleteOrder(orderId) {
+  await prisma.items.deleteMany({
+    where: {
+      orderId: orderId
+    }
+  })
+
+  const order = await prisma.order.delete({
+    where: {
+      orderId: orderId
+    }
+  })
+
+  return order
+}
+
 module.exports = {
     createOrder,
     getOrderById,
     listOrders,
-    updateOrder
+    updateOrder,
+    deleteOrder
 }
